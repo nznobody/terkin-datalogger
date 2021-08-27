@@ -7,10 +7,10 @@ RUN apt-get update && \
     apt-get -y clean && \
     python3 -m pip install -U pip setuptools
 
-ADD requirements-cpython.txt /tmp/build/requirements.txt
-RUN python3 -m pip install -r /tmp/build/requirements.txt
+# ADD requirements-cpython.txt /tmp/build/requirements.txt
+# RUN python3 -m pip install -r /tmp/build/requirements.txt
 
-ADD dist/terkin-*-py3-none-any.whl /tmp/build/
+ADD dist/terkin*-py3-none-any.whl /tmp/build/
 RUN python3 -m pip install /tmp/build/*.whl
 
 WORKDIR /opt/terkin-datalogger

@@ -22,17 +22,24 @@ services:
       - ./:/src/terkin-datalogger
     stdin_open: true
     tty: true
-    ports: 
-      - 8080:80
+    expose: 
+      - "80"
 
   build:
+    profiles: ["build"]
     image: hiveeyes/dev:latest
-    restart: unless-stopped
     volumes:
-      - ../terkin-datalogger:/opt/terkin-datalogger
-    command: ""
+      - ./:/src/terkin-datalogger
+    command: |
+      bash -c
+      "python3 setup.py clean --all &&
+      python3 setup_libraries.py bdist_wheel &&
+      python3 setup.py clean --all &&
+      python3 setup.py bdist_wheel &&
+      python3 setup.py clean --all"
 
   daemon:
+    profiles: ["run"]
     build:
       context: .
       dockerfile: daemon.dockerfile

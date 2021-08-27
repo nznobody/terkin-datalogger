@@ -16,6 +16,6 @@ RUN apt-get update && \
 ADD tools/pycom-firmware-build /usr/bin/build
 ADD requirements-cpython.txt requirements-build.txt requirements-dev.txt requirements-test.txt /tmp/terkin/requirements/
 
-RUN python3 -m pip install -r /tmp/terkin/requirements/requirements*.txt
+RUN  find /tmp/terkin/requirements/ -name "requirements*.txt" -type f -exec python3 -m pip install -r '{}' ';'
 
 WORKDIR /src/terkin-datalogger
