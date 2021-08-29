@@ -40,6 +40,9 @@ services:
 
   daemon:
     profiles: ["run"]
+    depends_on:
+      - dev
+      - build
     build:
       context: .
       dockerfile: daemon.dockerfile
