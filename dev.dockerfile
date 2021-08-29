@@ -1,6 +1,6 @@
 # https://github.com/pycom/pycom-libraries/tree/master/pycom-docker-fw-build
 
-FROM debian:buster-slim
+FROM python:3.9-slim-buster
 
 RUN apt-get update && \ 
     apt-get -y install curl zip git wget && \
@@ -14,7 +14,7 @@ RUN apt-get update && \
     git clone --recursive https://github.com/pycom/pycom-micropython-sigfox.git
 
 ADD tools/pycom-firmware-build /usr/bin/build
-ADD requirements-cpython.txt requirements-build.txt requirements-dev.txt requirements-test.txt /tmp/terkin/requirements/
+ADD requirements-cpython.txt requirements-docs.txt requirements-build.txt requirements-dev.txt requirements-test.txt /tmp/terkin/requirements/
 
 RUN  find /tmp/terkin/requirements/ -name "requirements*.txt" -type f -exec python3 -m pip install -r '{}' ';'
 

@@ -26,13 +26,14 @@
 	"extensions": [
 		"ms-python.python",
 		"lextudio.restructuredtext",
-		"trond-snekvik.simple-rst"
+		"trond-snekvik.simple-rst",
+		"ms-azuretools.vscode-docker"
 	],
 	"portsAttributes": {
 		"80": {
 			"label": "HTTP_API"
 		}
-	}
+	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
@@ -44,7 +45,7 @@
 	// "shutdownAction": "none",
 
 	// Uncomment the next line to run commands after the container is created - for example installing curl.
-	// "postCreateCommand": "apt-get update && apt-get install -y curl",
+	"postCreateCommand": "ln -f -s /usr/local/bin/python3 /usr/bin/python3 && python3 -m pip install -U sphinx rstcheck snooty && python3 setup.py develop",
 
 	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "vscode"
