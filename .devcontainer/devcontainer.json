@@ -13,7 +13,7 @@
 
 	// The 'service' property is the name of the service for the container that VS Code should
 	// use. Update this value and .devcontainer/docker-compose.yml to the real service name.
-	"service": "dev",
+	"service": "vscode",
 
 	// The optional 'workspaceFolder' property is the path VS Code should open by default when
 	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
@@ -45,8 +45,8 @@
 	// "shutdownAction": "none",
 
 	// Uncomment the next line to run commands after the container is created - for example installing curl.
-	"postCreateCommand": "ln -f -s /usr/local/bin/python3 /usr/bin/python3 && python3 -m pip install -U sphinx rstcheck snooty && python3 setup.py develop",
+	"postCreateCommand": "sudo python3 setup.py develop && sudo chmod o+rw /var/run/docker.sock",
 
 	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
-	// "remoteUser": "vscode"
+	"remoteUser": "vscode"
 }
